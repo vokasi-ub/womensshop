@@ -17,7 +17,7 @@ class CrateProdukTable extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->primary('idProduk');
             $table->string('idProduk',30);
-            $table->string('idSub',30);
+            $table->string('idSubKategori',30);
             $table->string('nama');
             $table->longText('deskripsi');
             $table->integer('stok');
