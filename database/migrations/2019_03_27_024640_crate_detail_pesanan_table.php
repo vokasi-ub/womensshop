@@ -15,8 +15,7 @@ class CrateDetailPesananTable extends Migration
     {
         //
         Schema::create('detail_pesanan', function (Blueprint $table) {
-            $table->primary('idPesanan');
-            $table->string('idPesanan',30);
+            $table->bigIncrements('idPesanan');
             $table->string('idProduk',30);
             $table->string('nama');
             $table->longText('alamat');

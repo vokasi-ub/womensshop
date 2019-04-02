@@ -15,8 +15,7 @@ class CrateSubKategoriTable extends Migration
     {
         //
         Schema::create('sub_kategori', function (Blueprint $table) {
-            $table->primary('idSubKategori');
-            $table->string('idSubKategori',30);
+            $table->bigIncrements('idSubKategori');
             $table->string('idKategori',30);
             $table->string('namaSub');
         });

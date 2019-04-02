@@ -15,8 +15,7 @@ class CrateProdukTable extends Migration
     {
         //
         Schema::create('produk', function (Blueprint $table) {
-            $table->primary('idProduk');
-            $table->string('idProduk',30);
+            $table->bigIncrements('idProduk');
             $table->string('idSubKategori',30);
             $table->string('nama');
             $table->longText('deskripsi');

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\subkategoriModel;
 
-class project1Controller extends Controller
+class subKategoriController extends Controller
 {
     /**
      * Display a listing of the resource.

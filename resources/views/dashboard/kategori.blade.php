@@ -26,7 +26,17 @@
                   <th>Nama Kategori</th>
                   <th>Options</th>
                 </tr>
-                
+                <?php $no=1; ?>
+                @foreach ($datakategori as $row)
+                <tr>
+            
+                    <th>{{ $no++ }}</th>
+                    <th>{{ $row->namaKategori }}</th>
+                    <th> 
+                        <a href="editkategori/{{$row->idKategori}}">Edit</a>
+                        <a href="hapuskategori/{{$row->idKategori}}">Delete</a>
+                    </tr>
+                @endforeach
               </table>
             </div>
             <!-- /.box-body -->

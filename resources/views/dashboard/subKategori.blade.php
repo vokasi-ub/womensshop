@@ -16,7 +16,7 @@
                       </span>
                   </div>
               </form>
-              <a href="{{url('tambahdata')}}"> Create </a>
+              <a href="{{url('tambahdatasub')}}"> Create </a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -27,7 +27,18 @@
                   <th>Nama Sub Kategori</th>
                   <th>Options</th>
                 </tr>
-                
+                <?php $no=1; ?>
+                @foreach ($datakategori as $row)
+                <tr>
+            
+                    <th>{{ $no++ }}</th>
+                    <th>{{ $row->idKategori }}</th>
+                    <th>{{ $row->namaSub }}</th>
+                    <th> 
+                        <a href="editsub/{{$row->idSubKategori}}">Edit</a>
+                        <a href="hapussub/{{$row->idSubKategori}}">Delete</a>
+                    </tr>
+                @endforeach
               </table>
             </div>
             <!-- /.box-body -->
