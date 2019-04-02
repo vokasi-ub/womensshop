@@ -13,9 +13,17 @@ class subKategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        //mendefinisikan kata kunci
+        $cari = $request->q;
+        //mencari data di database
+        $datasub = DB::table('sub_kategori')
+        ->where('namaSub','like',"%".$cari."%")
+        ->paginate();
+        //return data ke view
+        return view('dashboard.subKategori', compact('datasub'));
     }
 
     /**
@@ -26,6 +34,7 @@ class subKategoriController extends Controller
     public function create()
     {
         //
+        return view('crudsub.createsub');
     }
 
     /**
@@ -37,6 +46,8 @@ class subKategoriController extends Controller
     public function store(Request $request)
     {
         //
+        DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori]);
+        return redirect('subKategori');
     }
 
     /**
@@ -45,9 +56,10 @@ class subKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idSubKategori)
     {
         //
+        return view('crudsub.createsub');
     }
 
     /**
@@ -56,9 +68,11 @@ class subKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idSubKategori)
     {
         //
+        $datasub = DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->get();
+        return view('crudsub.editsub', compact('datasub'));
     }
 
     /**
@@ -68,9 +82,13 @@ class subKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idSubKategori)
     {
         //
+        DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->update([
+            'namaSub' => $request->namaSub,
+        ]);
+        return redirect('subkategori');
     }
 
     /**
@@ -79,8 +97,10 @@ class subKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idSubKategori)
     {
         //
+        DB::table('sub_kategori')->where('idSubKategori', $idSubKategori)->delete();
+        return redirect('subkategori');
     }
 }

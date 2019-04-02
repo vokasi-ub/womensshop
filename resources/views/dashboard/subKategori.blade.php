@@ -28,7 +28,7 @@
                   <th>Options</th>
                 </tr>
                 <?php $no=1; ?>
-                @foreach ($datakategori as $row)
+                @foreach ($datasub as $row)
                 <tr>
             
                     <th>{{ $no++ }}</th>

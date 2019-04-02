@@ -20,8 +20,7 @@ Auth::routes();
 /*menampilkan halaman setelah login*/
 Route::get('/home', 'HomeController@index')->name('dashboard.dashboard');
 
-/* menampilkan halaman kategori */
-Route::resource('kategori', 'HomeController');
+
 
 /* menampilkan halaman sub kategori */
 Route::get('subkategori', function () {
@@ -38,6 +37,8 @@ Route::get('detailpesanan', function () {
     return view('dashboard.detailpesanan');
 });
 
+/* menampilkan halaman kategori */
+Route::resource('kategori', 'HomeController');
 /* crud kategori */
 Route::get('editkategori/{idKategori}','HomeController@edit');
 Route::post('updatekategori/{idKategori}','HomeController@update');
@@ -45,9 +46,12 @@ Route::post('tambahkategori','HomeController@store');
 Route::get('tambahdata','HomeController@create');
 Route::get('hapuskategori/{idKategori}','HomeController@destroy');
 
+
+/* menampilkan halaman subkategori */
+Route::resource('subkategori', 'subKategoriController');
 /* crud subkategori */
 Route::get('editsub/{idSubKategori}','subKategoriController@edit');
 Route::post('updatesub/{idSubKategori}','subKategoriController@update');
 Route::post('tambahsub','subKategoriController@store');
 Route::get('tambahdatasub','subKategoriController@create');
-Route::get('hapusksub/{idSubKategori}','subKategoriController@destroy');
+Route::get('hapussub/{idSubKategori}','subKategoriController@destroy');

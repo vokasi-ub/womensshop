@@ -17,11 +17,11 @@ class CrateProdukTable extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->bigIncrements('idProduk');
             $table->string('idSubKategori',30);
-            $table->string('nama');
+            $table->string('nama',30);
             $table->longText('deskripsi');
             $table->integer('stok');
             $table->double('harga');
-            $table->string('gambar');
+            $table->string('gambar',100);
         });
     }
 
