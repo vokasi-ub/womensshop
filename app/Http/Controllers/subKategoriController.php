@@ -46,7 +46,8 @@ class subKategoriController extends Controller
     public function store(Request $request)
     {
         //
-        DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori]);
+        DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori,
+            'namaSub' => $request->namaSub]);
         return redirect('subKategori');
     }
 
@@ -88,7 +89,7 @@ class subKategoriController extends Controller
         DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->update([
             'namaSub' => $request->namaSub,
         ]);
-        return redirect('subkategori');
+        return redirect('subKategori');
     }
 
     /**

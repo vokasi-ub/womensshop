@@ -55,3 +55,21 @@ Route::post('updatesub/{idSubKategori}','subKategoriController@update');
 Route::post('tambahsub','subKategoriController@store');
 Route::get('tambahdatasub','subKategoriController@create');
 Route::get('hapussub/{idSubKategori}','subKategoriController@destroy');
+
+/* menampilkan halaman produk */
+Route::resource('produk', 'produkController');
+/* crud subkategori */
+Route::get('editproduk/{idProduk}','produkController@edit');
+Route::post('updateproduk/{idproduk}','produkController@update');
+Route::post('tambahproduk','produkController@store');
+Route::get('tambahdataproduk','produkController@create');
+Route::get('hapusproduk/{idProduk}','produkController@destroy');
+
+/* menampilkan halaman produk */
+Route::resource('detailpesanan', 'detailPesananController');
+/* crud subkategori */
+Route::get('editdetail/{idPesanan}','detailPesananController@edit');
+Route::post('updatedetail/{idPesanan}','detailPesananController@update');
+Route::post('tambahdetail','detailPesananController@store');
+Route::get('tambahdatadetail','detailPesananController@create');
+Route::get('hapusdetail/{idPesanan}','detailPesananController@destroy');

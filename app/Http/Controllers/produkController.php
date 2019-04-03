@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\produkModel;
 
 class produkController extends Controller
 {
@@ -11,9 +13,17 @@ class produkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //mendefinisikan kata kunci
+        $cari = $request->q;
+        //mencari data di database
+        $dataproduk = DB::table('produk')
+        ->where('nama','like',"%".$cari."%")
+        ->paginate();
+        //return data ke view
+        return view('dashboard.produk', compact('dataproduk'));
+
     }
 
     /**
@@ -24,6 +34,7 @@ class produkController extends Controller
     public function create()
     {
         //
+        return view('crudproduk.createproduk');
     }
 
     /**
@@ -35,6 +46,16 @@ class produkController extends Controller
     public function store(Request $request)
     {
         //
+        DB::table('produk')->insert([
+            'idSubKategori' => $request->idSubKategori,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'gambar' => $request->gambar
+          ]);
+
+        return redirect('produk');
     }
 
     /**
@@ -43,9 +64,11 @@ class produkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idProduk)
     {
         //
+        return view('crudproduk.createproduk');
+
     }
 
     /**
@@ -54,9 +77,11 @@ class produkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idProduk)
     {
         //
+        $dataproduk = DB::table('produk')->where('idProduk',$idProduk)->get();
+        return view('crudproduk.editproduk', compact('dataproduk'));
     }
 
     /**
@@ -66,9 +91,14 @@ class produkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idProduk)
     {
         //
+        DB::table('produk')->where('idProduk',$idProduk)->update([
+           
+            'idSubKategori' => $request->idSubKategori,
+        ]);
+        return redirect('produk');
     }
 
     /**
@@ -77,8 +107,10 @@ class produkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idProduk)
     {
         //
+        DB::table('produk')->where('idProduk', $idProduk)->delete();
+        return redirect('produk');
     }
 }

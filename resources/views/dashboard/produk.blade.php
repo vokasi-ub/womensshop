@@ -16,7 +16,7 @@
                       </span>
                   </div>
               </form>
-              <a href="{{url('tambahdata')}}"> Create </a>
+              <a href="{{url('tambahdataproduk')}}"> Create </a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,7 +31,22 @@
                   <th>Foto Produk</th>
                   <th>Options</th>
                 </tr>
-                
+                <?php $no=1; ?>
+                @foreach ($dataproduk as $row)
+                <tr>
+            
+                    <th>{{ $no++ }}</th>
+                    <th>{{ $row->idSubKategori }}</th>
+                    <th>{{ $row->nama}}</th>
+                    <th>{{ $row->deskripsi }}</th>
+                    <th>{{ $row->stok }}</th>
+                    <th>{{ $row->harga }}</th>
+                    <th>{{ $row->gambar }}</th>
+                    <th> 
+                        <a href="editproduk/{{$row->idProduk}}">Edit</a>
+                        <a href="hapusproduk/{{$row->idProduk}}">Delete</a>
+                    </tr>
+                @endforeach
               </table>
             </div>
             <!-- /.box-body -->
