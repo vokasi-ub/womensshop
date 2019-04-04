@@ -16,7 +16,8 @@ class CrateDetailPesananTable extends Migration
         //
         Schema::create('detail_pesanan', function (Blueprint $table) {
             $table->bigIncrements('idPesanan');
-            $table->string('idProduk',30);
+            $table->unsignedBigInteger('idProduk');
+            $table->foreign('idProduk')->references('idProduk')->on('produk')->onDelete('cascade');
             $table->string('nama',30);
             $table->longText('alamat');
             $table->timestamp('tanggal')->useCurrent();
@@ -33,5 +34,7 @@ class CrateDetailPesananTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('detail_pesanan');
+        $table->dropForeign(['idProduk']);
     }
 }

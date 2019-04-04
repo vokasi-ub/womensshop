@@ -16,8 +16,10 @@ class CrateSubKategoriTable extends Migration
         //
         Schema::create('sub_kategori', function (Blueprint $table) {
             $table->bigIncrements('idSubKategori');
-            $table->string('idKategori',30);
+            $table->unsignedBigInteger('idKategori');
+            $table->foreign('idKategori')->references('idKategori')->on('kategori')->onDelete('cascade');
             $table->string('namaSub',30);
+            $table->timestamps();
         });
     }
 
@@ -29,5 +31,7 @@ class CrateSubKategoriTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('sub_kategori');
+        $table->dropForeign(['idKategori']);
     }
 }

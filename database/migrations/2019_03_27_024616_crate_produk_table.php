@@ -16,12 +16,14 @@ class CrateProdukTable extends Migration
         //
         Schema::create('produk', function (Blueprint $table) {
             $table->bigIncrements('idProduk');
-            $table->string('idSubKategori',30);
+            $table->unsignedBigInteger('idSubKategori');
+            $table->foreign('idSubKategori')->references('idSubKategori')->on('sub_kategori')->onDelete('cascade');
             $table->string('nama',30);
             $table->longText('deskripsi');
             $table->integer('stok');
             $table->double('harga');
             $table->string('gambar',100);
+            $table->timestamps();
         });
     }
 
@@ -33,5 +35,7 @@ class CrateProdukTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('produk');
+        $table->dropForeign(['idSubKategori']);
     }
 }

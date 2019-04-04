@@ -34,7 +34,8 @@ class detailPesananController extends Controller
      */
     public function create()
     {
-        return view('cruddetail.createdetail');
+        $datadetail = DB::table('detail_pesanan')->get();
+        return view('cruddetail.createdetail', compact('datadetail'));
     }
 
     /**
@@ -47,7 +48,7 @@ class detailPesananController extends Controller
     {
         //
         DB::table('detail_pesanan')->insert([
-            'idProduk' => $request->idProduk,
+            'idProduk' => $request->idPesanan,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'tanggal' => $request->tanggal,
@@ -55,7 +56,7 @@ class detailPesananController extends Controller
             'totalHarga' => $request->totalHarga,
           ]);
 
-        return redirect('detailpesanan');
+        return redirect()->route('detailpesanan.index');
     }
 
     /**
@@ -96,8 +97,13 @@ class detailPesananController extends Controller
         DB::table('detail_pesanan')->where('idPesanan',$idPesanan)->update([
            
             'idProduk' => $request->idProduk,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
+            'totalHarga' => $request->totalHarga,
         ]);
-        return redirect('detailpesanan');
+        return redirect()->route('detailpesanan.index');
     }
 
     /**

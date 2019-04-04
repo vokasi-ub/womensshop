@@ -38,6 +38,10 @@ class HomeController extends Controller
         //return data ke view
         return view('dashboard.kategori', compact('datakategori'));
     }
+    public function index2()
+    {
+        return view('dashboard.dashboard');
+    }
 
     public function store(Request $request)
     {

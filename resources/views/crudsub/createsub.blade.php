@@ -15,17 +15,18 @@
               <i class="fa fa-minus"></i></button>
           </div>
         </div>
-		<div class="box-body">
-       
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-tags"></i> ID Kategori </span>
-                    <input title="ID Kategori"type="text" name="idKategori" autocomplete="off" required class="form-control">
-			</div><br>
+
+        <select name="idKategori" id='idKategori' class="form-control">
+        <option value="">- select kategori </option>
+          @foreach ($datasub as $row)
+            <option value="{{$row->idKategori}}" > {{$row->namaKategori}} </option>
+          @endforeach
+          </select>
       <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i> Nama Sub </span>
                     <input title="Nama Sub"type="text" name="namaSub" autocomplete="off" required class="form-control">
 			</div><br>
-				
+			
 		</div>
         <div class="box-footer">
 			<div class="col-md-offset-10 col-md-9">			

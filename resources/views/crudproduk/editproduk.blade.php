@@ -19,10 +19,12 @@
         </div>
 		<div class="box-body">
               
-				<div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-tags"></i> ID Sub Kategori </span>
-                <input title="ID Sub Kategori"type="text" name="idSubKategori" autocomplete="off" required class="form-control" value="{{$row2->idSubKategori}}">
-				</div><br>
+        <select name="idSubKategori" id='idSubKategori' class="form-control">
+        <option value="">- select produk </option>
+          @foreach ($dataproduk as $row)
+            <option value="{{$row->idSubKategori}}" > {{$row->idSubKategori}} </option>
+          @endforeach
+          </select>
                 <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i>Nama </span>
                 <input title="Nama"type="text" name="nama" autocomplete="off" required class="form-control" value="{{$row2->nama}}">

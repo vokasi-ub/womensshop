@@ -26,6 +26,8 @@ class subKategoriController extends Controller
         return view('dashboard.subKategori', compact('datasub'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +36,8 @@ class subKategoriController extends Controller
     public function create()
     {
         //
-        return view('crudsub.createsub');
+        $datasub = DB::table('kategori')->get();
+        return view('crudsub.createsub', compact('datasub'));
     }
 
     /**
@@ -48,7 +51,7 @@ class subKategoriController extends Controller
         //
         DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori,
             'namaSub' => $request->namaSub]);
-        return redirect('subKategori');
+        return redirect()->route('subkategori.index');
     }
 
     /**
@@ -89,7 +92,7 @@ class subKategoriController extends Controller
         DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->update([
             'namaSub' => $request->namaSub,
         ]);
-        return redirect('subKategori');
+        return redirect('subkategori');
     }
 
     /**

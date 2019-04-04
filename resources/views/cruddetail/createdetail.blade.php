@@ -17,10 +17,13 @@
         </div>
 		<div class="box-body">
        
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-tags"></i> ID Produk </span>
-                    <input title="ID PRoduk"type="text" name="idProduk" autocomplete="off" required class="form-control">
-			</div><br>
+                   
+        <select name="idPesanan" id='idPesanan' class="form-control">
+        <option value="">- select produk </option>
+          @foreach ($datadetail as $row)
+            <option value="{{$row->idProduk}}" > {{$row->nama}} </option>
+          @endforeach
+          </select>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i> Nama </span>
                     <input title="Nama"type="text" name="nama" autocomplete="off" required class="form-control">

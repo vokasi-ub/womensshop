@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 /*menampilkan halaman setelah login*/
-Route::get('/home', 'HomeController@index')->name('dashboard.dashboard');
+Route::get('/home', 'HomeController@index2')->name('dashboard.dashboard');
 
 
 

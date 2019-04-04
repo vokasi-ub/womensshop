@@ -34,7 +34,8 @@ class produkController extends Controller
     public function create()
     {
         //
-        return view('crudproduk.createproduk');
+        $dataproduk = DB::table('sub_kategori')->get();
+        return view('crudproduk.createproduk', compact('dataproduk'));
     }
 
     /**
@@ -55,7 +56,7 @@ class produkController extends Controller
             'gambar' => $request->gambar
           ]);
 
-        return redirect('produk');
+          return redirect()->route('produk.index');
     }
 
     /**
@@ -97,8 +98,13 @@ class produkController extends Controller
         DB::table('produk')->where('idProduk',$idProduk)->update([
            
             'idSubKategori' => $request->idSubKategori,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'gambar' => $request->gambar
         ]);
-        return redirect('produk');
+        return redirect()->route('produk.index');
     }
 
     /**
