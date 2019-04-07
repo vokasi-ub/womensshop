@@ -16,7 +16,7 @@
         <li class="header">MAIN NAVIGATION</li>
 		
 		<li class="active">
-          <a href="{{url('dashboard')}}">
+          <a href="{{url('home')}}">
             <i class="fa fa-dashboard"></i> <span>HOME</span>
            
           </a>

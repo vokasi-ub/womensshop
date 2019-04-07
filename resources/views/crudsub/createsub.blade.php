@@ -8,7 +8,7 @@
 	   <form action="{{url('tambahsub')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
 	   {{ csrf_field() }}
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-tags"></i> Create data kategori</h3>
+          <h3 class="box-title"><i class="fa fa-tags"></i> Create Data Kategori</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -16,6 +16,8 @@
           </div>
         </div>
 
+        
+        
         <select name="idKategori" id='idKategori' class="form-control">
         <option value="">- select kategori </option>
           @foreach ($datasub as $row)

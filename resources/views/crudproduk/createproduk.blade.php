@@ -41,7 +41,7 @@
 			</div><br>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-tags"></i>Gambar </span>
-                    <input title="Gambar"type="text" name="gambar" autocomplete="off" required class="form-control">
+                    <input title="Gambar"type="file" name="gambar" autocomplete="off" required class="form-control">
 			</div><br>
 				
 		</div>

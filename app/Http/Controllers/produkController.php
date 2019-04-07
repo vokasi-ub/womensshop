@@ -8,11 +8,6 @@ use App\produkModel;
 
 class produkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         //mendefinisikan kata kunci
@@ -26,11 +21,6 @@ class produkController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -38,14 +28,12 @@ class produkController extends Controller
         return view('crudproduk.createproduk', compact('dataproduk'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        // mengupload gambar
+        $file       = $request->file('gambar');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('gambar')->move("image/", $fileName);
         //
         DB::table('produk')->insert([
             'idSubKategori' => $request->idSubKategori,
@@ -53,18 +41,13 @@ class produkController extends Controller
             'deskripsi' => $request->deskripsi,
             'stok' => $request->stok,
             'harga' => $request->harga,
-            'gambar' => $request->gambar
+        // mengupload gambar
+            'gambar' => $fileName
           ]);
 
           return redirect()->route('produk.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($idProduk)
     {
         //
@@ -72,28 +55,19 @@ class produkController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($idProduk)
     {
         //
         $dataproduk = DB::table('produk')->where('idProduk',$idProduk)->get();
-        return view('crudproduk.editproduk', compact('dataproduk'));
+        $sub_kategori = DB::table('sub_kategori')->get();
+        return view('crudproduk.editproduk', compact('dataproduk','sub_kategori'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $idProduk)
     {
+        $file       = $request->file('gambar');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('gambar')->move("image/", $fileName);
         //
         DB::table('produk')->where('idProduk',$idProduk)->update([
            
@@ -102,17 +76,11 @@ class produkController extends Controller
             'deskripsi' => $request->deskripsi,
             'stok' => $request->stok,
             'harga' => $request->harga,
-            'gambar' => $request->gambar
+            'gambar' => $fileName
         ]);
         return redirect()->route('produk.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($idProduk)
     {
         //

@@ -3,7 +3,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">DETAIL PESANAN</h3>
@@ -44,7 +44,6 @@
                     <th>{{ $row->jumlah }}</th>
                     <th>{{ $row->totalHarga }}</th>
                     <th> 
-                        <a href="editdetail/{{$row->idPesanan}}">Edit</a>
                         <a href="hapusdetail/{{$row->idPesanan}}">Delete</a>
                     </tr>
                 @endforeach

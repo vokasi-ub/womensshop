@@ -3,7 +3,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">PRODUK</h3>
@@ -41,7 +41,8 @@
                     <th>{{ $row->deskripsi }}</th>
                     <th>{{ $row->stok }}</th>
                     <th>{{ $row->harga }}</th>
-                    <th>{{ $row->gambar }}</th>
+                    <!-- upload gambar -->
+                    <th><img src="/image/{{ $row->gambar }}" height="30px" width="30px" /></th>
                     <th> 
                         <a href="editproduk/{{$row->idProduk}}">Edit</a>
                         <a href="hapusproduk/{{$row->idProduk}}">Delete</a>
