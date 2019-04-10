@@ -18,7 +18,7 @@
 		<div class="box-body">
        
                    
-        <select name="idPesanan" id='idPesanan' class="form-control">
+        <select name="idProduk" id='idProduk' class="form-control">
         <option value="">- select produk </option>
           @foreach ($datadetail as $row)
             <option value="{{$row->idProduk}}" > {{$row->nama}} </option>

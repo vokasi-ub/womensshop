@@ -42,7 +42,7 @@
                     <th>{{ $row->stok }}</th>
                     <th>{{ $row->harga }}</th>
                     <!-- upload gambar -->
-                    <th><img src="/image/{{ $row->gambar }}" height="30px" width="30px" /></th>
+                    <th><img src="/image/{{ $row->gambar }}" height="100px" width="100px" /></th>
                     <th> 
                         <a href="editproduk/{{$row->idProduk}}">Edit</a>
                         <a href="hapusproduk/{{$row->idProduk}}">Delete</a>

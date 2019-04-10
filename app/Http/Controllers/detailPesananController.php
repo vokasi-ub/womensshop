@@ -48,7 +48,7 @@ class detailPesananController extends Controller
     {
         //
         DB::table('detail_pesanan')->insert([
-            'idProduk' => $request->idPesanan,
+            'idProduk' => $request->idProduk,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'tanggal' => $request->tanggal,

@@ -22,6 +22,23 @@
           </a>
           
         </li>  
+
+<!--
+        <li class="active">
+          <a href="{{url('atasan')}}">
+            <i class="fa fa-dashboard"></i> <span>Produk Atasan</span>
+           
+          </a>
+          
+        </li>  
+
+        <li class="active">
+          <a href="{{url('bawahan')}}">
+            <i class="fa fa-dashboard"></i> <span>Produk Bawahan</span>
+      
+          </a>
+-->           
+        </li>  
 		
         <li class="active">
           <a href="{{url('kategori')}}">

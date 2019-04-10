@@ -20,7 +20,17 @@ Auth::routes();
 /*menampilkan halaman setelah login*/
 Route::get('/home', 'HomeController@index2')->name('dashboard.dashboard');
 
+/* menampilkan halaman atasan
+Route::get('atasan', function () {
+    return view('dashboard.atasan');
+});
+*/
 
+/* menampilkan halaman bawahan 
+Route::get('bawahan', function () {
+    return view('dashboard.bawahan');
+});
+*/
 
 /* menampilkan halaman sub kategori */
 Route::get('subkategori', function () {
