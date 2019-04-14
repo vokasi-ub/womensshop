@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\subkategoriModel;
+use App\kategoriModel;
 
 class subKategoriController extends Controller
 {
@@ -15,9 +16,10 @@ class subKategoriController extends Controller
         //mendefinisikan kata kunci
         $cari = $request->q;
         //mencari data di database
-        $datasub = DB::table('sub_kategori')
-        ->where('namaSub','like',"%".$cari."%")
-        ->paginate();
+        $datasub = subkategoriModel::with(['kategoriModel', 'produkModel'])
+        ->when($request->keyword, function($query) use ($request){
+            $query->where('namaSub','like', "%{$request->keyword}%");
+        })->get();
         //return data ke view
         return view('dashboard.subKategori', compact('datasub'));
     }
@@ -25,15 +27,19 @@ class subKategoriController extends Controller
     public function create()
     {
         //
-        $datasub = DB::table('kategori')->get();
-        return view('crudsub.createsub', compact('datasub'));
+        $datasub = subkategoriModel::with(['kategoriModel','produkModel'])->get();
+        $data = kategoriModel::all();
+        return view('crudsub.createsub', compact('datasub', 'data'));
     }
 
     public function store(Request $request)
     {
         //
-        DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori,
-            'namaSub' => $request->namaSub]);
+        $datasub = subkategoriModel::with(['kategoriModel','produkModel'])
+        ->insert(['idKategori' => $request->idKategori,
+                    'namaSub' => $request->namaSub]);
+        // DB::table('sub_kategori')->insert(['idKategori' => $request->idKategori,
+        //     'namaSub' => $request->namaSub]);
         return redirect()->route('subkategori.index');
     }
 
@@ -45,26 +51,27 @@ class subKategoriController extends Controller
 
     public function edit($idSubKategori)
     {
-        //
-        $datasub = DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->get();
-        $kategori = DB::table('kategori')->get();
-        return view('crudsub.editsub', compact('datasub','kategori'));
+        $subkategori = subkategoriModel::all();
+        $kategori = kategoriModel::all();
+        $data = subkategoriModel::where('idSubKategori', $idSubKategori)->get();
+        return view('crudsub.editsub', compact('subkategori', 'kategori', 'data'));
     }
 
-    public function update(Request $request, $idSubKategori)
+    public function update(Request $request)
     {
         //
-        DB::table('sub_kategori')->where('idSubKategori',$idSubKategori)->update([
-            'idKategori' => $request->idKategori,
-            'namaSub' => $request->namaSub,
-        ]);
+        $data = subkategoriModel::find($request->idSubKategori);
+        $data->idKategori = $request->idKategori;
+        $data->namaSub = $request->namaSub;
+        $data->save();
         return redirect('subkategori');
     }
 
     public function destroy($idSubKategori)
     {
         //
-        DB::table('sub_kategori')->where('idSubKategori', $idSubKategori)->delete();
+        $data=subkategoriModel::find($idSubKategori);
+        $data->delete();
         return redirect('subkategori');
     }
 }

@@ -44,7 +44,8 @@
                     <th>{{ $row->jumlah }}</th>
                     <th>{{ $row->totalHarga }}</th>
                     <th> 
-                        <a href="hapusdetail/{{$row->idPesanan}}">Delete</a>
+                        <a href="hapusdetail/{{$row->idPesanan}}" onClick="return confirm('Are you sure to delete?')"
+                          class="btn default"> <i class="fa fa-trash-o"> </i>Delete</a>
                     </tr>
                 @endforeach
               </table>

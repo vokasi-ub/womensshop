@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('content')
 
+@foreach($data as $p)
     <!-- Main content -->
     <section class="content">
       <div class="row">
 			 <div class="box">
-             @foreach ($datasub as $row)
 
-	   <form action="{{ url('updatesub/'.$row->idSubKategori) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+	   <form action="<?php echo url('updatesub/'.$p->idSubKategori)?>" class="form-horizontal" method="post" enctype="multipart/form-data">
 	   {{ csrf_field() }}
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-tags"></i> Form edit data kategori</h3>
@@ -22,12 +22,16 @@
     <select name="idKategori" id='idKategori' class="form-control">
         <option value="">- select kategori </option>
           @foreach ($kategori as $row2)
-            <option value="{{$row2->idKategori}}" > {{$row2->namaKategori}} </option>
+          @if($row2->idKategori == $row2->idKategori)
+            <option selected value="{{$row2->idKategori}}" > {{$row2->namaKategori}} </option>
+          @else
+            <option value="{{$row2->idKategori}}"> {{$row2->namaKategori}}
+          @endif
           @endforeach
           </select>
 				<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-tags"></i> Nama Sub Kategori </span>
-                        <input title="Nama Sub Kategori"type="text" name="namaSub" autocomplete="off" required class="form-control" value="{{$row->namaSub}}">
+                        <input title="Nama Sub Kategori"type="text" name="namaSub" autocomplete="off" required class="form-control" value="{{$p->namaSub}}">
 				</div><br>
 				
 		</div>
@@ -42,5 +46,5 @@
       </div>
       </div>
 </section>
-    @endforeach	
+@endforeach
 @endsection

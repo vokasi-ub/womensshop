@@ -28,29 +28,19 @@
                   <th>Options</th>
                 </tr>
                 <?php $no=1; ?>
-                @foreach ($datasub as $row)
+                @foreach ($datasub as $key=>$row)
                 <tr>
             
                     <th>{{ $no++ }}</th>
-                    <th>{{ $row->idKategori }}</th>
+                    <th>{{ $row->kategoriModel->namaKategori }}</th>
                     <th>{{ $row->namaSub }}</th>
                     <th> 
                         <a href="editsub/{{$row->idSubKategori}}">Edit</a>
-                        <a href="hapussub/{{$row->idSubKategori}}">Delete</a>
+                        <a href="hapussub/{{$row->idSubKategori}}" onClick="return confirm('Are you sure to delete?')"
+                          class="btn default"> <i class="fa fa-trash-o"> </i>Delete</a>
                     </tr>
                 @endforeach
               </table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
           </div>
 </section>
           <!-- /.box -->

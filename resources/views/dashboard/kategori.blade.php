@@ -34,7 +34,8 @@
                     <th>{{ $row->namaKategori }}</th>
                     <th> 
                         <a href="editkategori/{{$row->idKategori}}">Edit</a>
-                        <a href="hapuskategori/{{$row->idKategori}}">Delete</a>
+                        <a href="hapuskategori/{{$row->idKategori}}" onClick="return confirm('Are you sure to delete?')"
+                          class="btn default"> <i class="fa fa-trash-o"> </i>Delete</a>
                     </tr>
                 @endforeach
               </table>

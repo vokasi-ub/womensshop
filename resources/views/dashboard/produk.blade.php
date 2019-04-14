@@ -7,15 +7,16 @@
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">PRODUK</h3>
-              <form action="#" method="get" class="sidebar-form">
-                  <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                      <span class="input-group-btn">
-                      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                      </button>
-                      </span>
-                  </div>
-              </form>
+              <form action="{{ url()->current() }}">
+    <div class="col-md-11">
+        <input type="text" name="keyword" class="form-control" placeholder="Search users...">
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary">
+            Search
+        </button>
+    </div>
+</form>
               <a href="{{url('tambahdataproduk')}}"> Create </a>
             </div>
             <!-- /.box-header -->
@@ -32,11 +33,11 @@
                   <th>Options</th>
                 </tr>
                 <?php $no=1; ?>
-                @foreach ($dataproduk as $row)
+                @foreach ($dataproduk as $key=>$row)
                 <tr>
             
                     <th>{{ $no++ }}</th>
-                    <th>{{ $row->idSubKategori }}</th>
+                    <th>{{ $row->subkategoriModel->namaSub }}</th>
                     <th>{{ $row->nama}}</th>
                     <th>{{ $row->deskripsi }}</th>
                     <th>{{ $row->stok }}</th>
@@ -45,7 +46,8 @@
                     <th><img src="/image/{{ $row->gambar }}" height="100px" width="100px" /></th>
                     <th> 
                         <a href="editproduk/{{$row->idProduk}}">Edit</a>
-                        <a href="hapusproduk/{{$row->idProduk}}">Delete</a>
+                        <a href="hapusproduk/{{$row->idProduk}}" onClick="return confirm('Are you sure to delete?')"
+                          class="btn default"> <i class="fa fa-trash-o"> </i>Delete</a>
                     </tr>
                 @endforeach
               </table>

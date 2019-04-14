@@ -15,12 +15,10 @@
               <i class="fa fa-minus"></i></button>
           </div>
         </div>
-
-        
         
         <select name="idKategori" id='idKategori' class="form-control">
         <option value="">- select kategori </option>
-          @foreach ($datasub as $row)
+          @foreach ($data as $row)
             <option value="{{$row->idKategori}}" > {{$row->namaKategori}} </option>
           @endforeach
           </select>

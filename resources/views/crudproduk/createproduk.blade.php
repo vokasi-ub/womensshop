@@ -19,8 +19,8 @@
        
         <select name="idSubKategori" id='idSubKategori' class="form-control">
         <option value="">- select produk </option>
-          @foreach ($dataproduk as $row)
-            <option value="{{$row->idSubKategori}}" > {{$row->namaSub}} </option>
+          @foreach ($data as $row)
+            <option value="{{$row->idSubKategori}}"> {{$row->namaSub}} </option>
           @endforeach
           </select>
             <div class="input-group">
